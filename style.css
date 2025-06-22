@@ -1,0 +1,78 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f2f8ff;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #6a5acd;
+  margin-bottom: 20px;
+}
+
+.note-image img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+.clef-buttons,
+.note-buttons {
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 300px;
+  gap: 10px;
+  margin: 0 auto;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #add8e6;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #87cefa;
+}
+
+button:active {
+  background-color: #6ab7f5;
+}
+button.selected {
+  background-color: #a0d8ef; /* 水色で選択中を表現 */
+  color: white;
+}
+
+.controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.result {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #8a2be2;
+  font-weight: bold;
+}

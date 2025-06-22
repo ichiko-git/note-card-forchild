@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>おんぷカード</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <h1>おんぷカード</h1>
+
+      <div class="note-image">
+        <img id="noteImage" src="images/note_c4_treble.png" alt="音符画像" />
+      </div>
+      <button id="playSound">▶ おとをきく</button>
+      <div class="question">
+        <p>Q1. このきごうはなに？</p>
+        <div class="clef-buttons">
+          <button class="clef-btn" data-answer="treble">トおんきごう</button>
+          <button class="clef-btn" data-answer="bass">ヘおんきごう</button>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>Q2. このおとはなんのおと？</p>
+        <div class="note-buttons">
+          <button class="note-btn" data-answer="ド">ド</button>
+          <button class="note-btn" data-answer="レ">レ</button>
+          <button class="note-btn" data-answer="ミ">ミ</button>
+          <button class="note-btn" data-answer="ファ">ファ</button>
+          <button class="note-btn" data-answer="ソ">ソ</button>
+          <button class="note-btn" data-answer="ラ">ラ</button>
+          <button class="note-btn" data-answer="シ">シ</button>
+          <button class="note-btn" data-answer="高いド">たかいド</button>
+        </div>
+      </div>
+
+      <div class="result" id="result"></div>
+
+      <div class="controls">
+        <button id="next">つぎのもんだいへ</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
