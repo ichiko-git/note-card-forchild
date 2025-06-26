@@ -101,6 +101,7 @@ const notes = [
 let currentNote = null;
 let selectedClef = null;
 let selectedNoteName = null;
+let remainingNotes = [];
 
 const noteImage = document.getElementById("noteImage");
 const clefButtons = document.querySelectorAll(".clef-btn");
@@ -109,18 +110,52 @@ const result = document.getElementById("result");
 const playSoundBtn = document.getElementById("playSound");
 const nextBtn = document.getElementById("next");
 
-// ランダムに問題を出す
+// 配列をシャッフルする関数
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// ランダムに問題を出す（全問終わったら終了画面）
 function loadRandomNote() {
   result.textContent = "";
   selectedClef = null;
   selectedNoteName = null;
-  currentNote = notes[Math.floor(Math.random() * notes.length)];
+
+  if (remainingNotes.length === 0) {
+    // 全問終了
+    noteImage.style.display = "none";
+    clefButtons.forEach((btn) => (btn.disabled = true));
+    noteButtons.forEach((btn) => (btn.disabled = true));
+    playSoundBtn.disabled = true;
+    nextBtn.disabled = true;
+    result.textContent = "終了！お疲れさまでした！";
+    return;
+  }
+
+  // 1問取り出して出題
+  currentNote = remainingNotes.pop();
   noteImage.src = currentNote.image;
+  noteImage.style.display = "";
 
   // ボタンの選択状態をリセット
-  clefButtons.forEach((btn) => btn.classList.remove("selected"));
-  noteButtons.forEach((btn) => btn.classList.remove("selected"));
+  clefButtons.forEach((btn) => {
+    btn.classList.remove("selected");
+    btn.disabled = false;
+  });
+  noteButtons.forEach((btn) => {
+    btn.classList.remove("selected");
+    btn.disabled = false;
+  });
+  playSoundBtn.disabled = false;
+  nextBtn.disabled = false;
 }
+
+// ゲーム開始時にremainingNotesを初期化
+remainingNotes = shuffle([...notes]);
 
 // 正誤判定
 function checkAnswer() {
