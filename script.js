@@ -110,6 +110,29 @@ const result = document.getElementById("result");
 const playSoundBtn = document.getElementById("playSound");
 const nextBtn = document.getElementById("next");
 
+// 画面切り替え用の要素取得
+const startScreen = document.getElementById("startScreen");
+const gameScreen = document.getElementById("gameScreen");
+const endScreen = document.getElementById("endScreen");
+const startBtn = document.getElementById("startBtn");
+const retryBtn = document.getElementById("retryBtn");
+
+// 画面切り替え関数
+function showScreen(screen) {
+  startScreen.style.display = screen === "start" ? "block" : "none";
+  gameScreen.style.display = screen === "game" ? "block" : "none";
+  endScreen.style.display = screen === "end" ? "block" : "none";
+}
+
+// ゲーム初期化関数
+function startGame() {
+  remainingNotes = shuffle([...notes]);
+  showScreen("game");
+  noteImage.style.display = "";
+  result.textContent = "";
+  loadRandomNote();
+}
+
 // 配列をシャッフルする関数
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -127,12 +150,7 @@ function loadRandomNote() {
 
   if (remainingNotes.length === 0) {
     // 全問終了
-    noteImage.style.display = "none";
-    clefButtons.forEach((btn) => (btn.disabled = true));
-    noteButtons.forEach((btn) => (btn.disabled = true));
-    playSoundBtn.disabled = true;
-    nextBtn.disabled = true;
-    result.textContent = "終了！お疲れさまでした！";
+    showScreen("end");
     return;
   }
 
@@ -154,8 +172,21 @@ function loadRandomNote() {
   nextBtn.disabled = false;
 }
 
-// ゲーム開始時にremainingNotesを初期化
-remainingNotes = shuffle([...notes]);
+// スタートボタン
+if (startBtn) {
+  startBtn.addEventListener("click", () => {
+    startGame();
+  });
+}
+// リトライボタン
+if (retryBtn) {
+  retryBtn.addEventListener("click", () => {
+    startGame();
+  });
+}
+
+// 初期表示はスタート画面
+showScreen("start");
 
 // 正誤判定
 function checkAnswer() {
@@ -209,5 +240,3 @@ playSoundBtn.addEventListener("click", () => {
 nextBtn.addEventListener("click", () => {
   loadRandomNote();
 });
-
-loadRandomNote();

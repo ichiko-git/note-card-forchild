@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="app">
+    <div id="startScreen" class="app">
+      <h1>おんぷカード</h1>
+      <button id="startBtn">スタート</button>
+    </div>
+
+    <div class="app" id="gameScreen" style="display: none">
       <h1>おんぷカード</h1>
 
       <div class="note-image">
@@ -44,6 +49,10 @@
       </div>
     </div>
 
+    <div id="endScreen" class="app" style="display: none">
+      <h1>終了！お疲れさまでした！</h1>
+      <button id="retryBtn">もう一度あそぶ</button>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
